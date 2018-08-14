@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall functions for the NCS Migrate module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ *
+ * Cleans up config entities installed by this module.
+ */
+function ncs_migrate_uninstall() {
+  db_query("DELETE FROM {config} WHERE name LIKE '%migrate_plus.migration.ncs%'");
+  db_query("DELETE FROM {config} WHERE name LIKE '%migrate_plus.migration_group.ncs%'");
+  \Drupal::cache()->deleteAll();
+}

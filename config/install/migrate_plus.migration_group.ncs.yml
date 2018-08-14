@@ -1,0 +1,6 @@
+id: ncs
+label: NCS migration group
+description: NCS migration group
+dependencies:
+  module:
+    - ncs_migrate
