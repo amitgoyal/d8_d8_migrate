@@ -1,0 +1,25 @@
+id: ncs_category
+label: Taxonomy Category
+migration_group: ncs
+
+source:
+  plugin: d8_entity
+  entity_type: taxonomy_term
+  bundle: category
+
+process:
+  tid: tid
+  name: name
+  field_old_id: field_old_id
+  field_orgid: field_taxonomy_type
+
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: category
+
+migration_dependencies: {}
+
+dependencies:
+  enforced:
+    module:
+      - ncs_migrate

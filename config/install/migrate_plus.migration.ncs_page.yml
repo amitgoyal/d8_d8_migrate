@@ -5,27 +5,56 @@ migration_group: ncs
 source:
 #  plugin: content_entity:node
 #  bundle: page
+#  include_translations: false
   plugin: d8_entity
   # migrate key is defined in settings.php for source database.
-  key: migrate
+#  key: migrate
   entity_type: node
   bundle: page
 
 process:
   nid: nid
   title: title
+#  body/format:
+#    plugin: default_value
+#    default_value: full_html
+#  body/value: body/value
+#  body/summary: body/summary
+  body: body
   path: path
   created: created
+  changed: changed
   type:
     plugin: default_value
     default_value: page
   uid: uid
   status: status
+  langcode: langcode
+#  field_content_category/target_id:
+#    plugin: default_value
+#    default_value: 4
+#  field_content_category/target_id:
+#    plugin: migration_lookup
+#    migration: ncs_category
+#    source: field_category/target_id
+  field_content_category:
+    plugin: sub_process
+    source: field_category
+    process:
+      target_id:
+        plugin: migration_lookup
+        migration: ncs_category
+        source: target_id
+      weight:
+        plugin: default_value
+        default_value: 4
 
 destination:
   plugin: entity:node
 
-migration_dependencies: {}
+migration_dependencies:
+  required:
+    - ncs_category
 
 dependencies:
   enforced:
