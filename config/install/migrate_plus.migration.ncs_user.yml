@@ -1,0 +1,41 @@
+id: ncs_user
+label: User
+migration_group: ncs
+
+source:
+  plugin: d8_ncs_user
+  entity_type: user
+#  bundle: user
+
+process:
+  uid: uid
+  name: name
+  pass: pass
+  mail: mail
+  timezone: timezone
+  status: status
+  created: created
+  changed: changed
+  access: access
+  login: login
+  langcode: langcode
+  preferred_langcode: preferred_langcode
+  preferred_admin_langcode: preferred_admin_langcode
+  init: init
+  user_picture: user_picture
+  roles: roles
+  field_bio: field_bio
+  field_old_id: field_old_id
+  field_slack_username: field_slack_username
+  field_subscribe_to_newsletter: field_subscribe_to_newsletter
+  field_user_byline: field_user_byline
+
+destination:
+  plugin: entity:user
+
+migration_dependencies: {}
+
+dependencies:
+  enforced:
+    module:
+      - ncs_migrate
