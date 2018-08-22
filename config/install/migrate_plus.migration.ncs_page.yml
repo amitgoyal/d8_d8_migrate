@@ -14,6 +14,7 @@ source:
 
 process:
   nid: nid
+  vid: vid
   title: title
 #  body/format:
 #    plugin: default_value
@@ -30,31 +31,29 @@ process:
   uid: uid
   status: status
   langcode: langcode
-#  field_content_category/target_id:
-#    plugin: default_value
-#    default_value: 4
+  field_old_id: field_old_id
+  field_main_geolocation: field_main_geolocation
 #  field_content_category/target_id:
 #    plugin: migration_lookup
 #    migration: ncs_category
 #    source: field_category/target_id
   field_content_category:
     plugin: sub_process
-    source: field_category
+    source: field_content_category
     process:
       target_id:
         plugin: migration_lookup
-        migration: ncs_category
+        migration: ncs_taxonomy
         source: target_id
-      weight:
-        plugin: default_value
-        default_value: 4
+      weight: weight
+  field_publication: '@field_content_category'
 
 destination:
   plugin: entity:node
 
 migration_dependencies:
   required:
-    - ncs_category
+    - ncs_taxonomy
 
 dependencies:
   enforced:
