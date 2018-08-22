@@ -1,3 +1,4 @@
+# Depricated, please use ncs_taxonomy
 id: ncs_classified_ad_category
 label: Taxonomy Classified Ad Category
 migration_group: ncs

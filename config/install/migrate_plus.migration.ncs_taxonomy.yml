@@ -1,26 +1,29 @@
-# Depricated, please use ncs_taxonomy
-id: ncs_tags
-label: Taxonomy Tags
+id: ncs_taxonomy
+label: Taxonomy Category
 migration_group: ncs
 
 source:
   plugin: d8_taxonomy_term
   entity_type: taxonomy_term
-  bundle: tags
 
 process:
   tid: tid
+  vid: vid
   name: name
   weight: weight
   parent: parent
+  path: path
+  langcode: langcode
+  default_langcode: default_langcode
+  changed: changed
+  description/value: description__value
+  description/format: description__format
   field_old_id: field_old_id
   field_orgid: field_orgid
   field_taxonomy_type: field_taxonomy_type
-  path: path
 
 destination:
   plugin: entity:taxonomy_term
-  default_bundle: tags
 
 migration_dependencies: {}
 

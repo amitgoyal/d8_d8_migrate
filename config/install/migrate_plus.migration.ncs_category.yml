@@ -1,3 +1,4 @@
+# Depricated, please use ncs_taxonomy
 id: ncs_category
 label: Taxonomy Category
 migration_group: ncs
