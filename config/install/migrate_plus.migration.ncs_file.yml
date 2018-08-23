@@ -1,0 +1,30 @@
+id: ncs_file
+label: File
+migration_group: ncs
+
+source:
+  plugin: d8_entity
+  entity_type: file
+#  bundle: file
+
+process:
+  fid: fid
+  uid: uid
+  langcode: langcode
+  filename: filename
+  uri: uri
+  filemime: filemime
+  filesize: filesize
+  status: status
+  created: created
+  changed: changed
+
+destination:
+  plugin: entity:file
+
+migration_dependencies: {}
+
+dependencies:
+  enforced:
+    module:
+      - ncs_migrate
