@@ -1,0 +1,100 @@
+id: ncs_image
+label: Image content type
+migration_group: ncs
+
+source:
+  plugin: d8_entity
+  # migrate key is defined in settings.php for source database.
+#  key: migrate
+  entity_type: node
+  bundle: image
+
+process:
+  nid: nid
+  vid: vid
+  title: title
+  body: body
+  path: path
+  created: created
+  changed: changed
+  type:
+    plugin: default_value
+    default_value: image
+  uid: uid
+  status: status
+  langcode: langcode
+  field_old_id: field_old_id
+  field_all_aliases: field_all_aliases
+  field_content_category:
+    plugin: sub_process
+    source: field_content_category
+    process:
+      target_id:
+        plugin: migration_lookup
+        migration: ncs_taxonomy
+        source: target_id
+      weight: weight
+  field_content_tags:
+    plugin: sub_process
+    source: field_content_tags
+    process:
+      target_id:
+        plugin: migration_lookup
+        migration: ncs_taxonomy
+        source: target_id
+  field_publication: '@field_content_category'
+  field_parent_categories: '@field_content_category'
+  field_access_control: field_access_control
+  field_byline: field_byline
+  field_from_wire: field_from_wire
+  field_main_image:
+    plugin: sub_process
+    source: field_main_image
+    process:
+      target_id:
+        plugin: migration_lookup
+        migration: ncs_file
+        source: target_id
+  field_geolocation: field_geolocation
+  field_geolocation_reference:
+    plugin: sub_process
+    source: field_geolocation_reference
+    process:
+      target_id:
+        plugin: migration_lookup
+        migration: ncs_geolocation
+        source: target_id
+  field_comments: field_comments
+  field_iptc_byline: field_iptc_byline
+  field_iptc_byline_title: field_iptc_byline_title
+  field_iptc_category: field_iptc_category
+  field_iptc_city: field_iptc_city
+  field_iptc_copyright_notice: field_iptc_copyright_notice
+  field_iptc_country: field_iptc_country
+  field_iptc_created_date: field_iptc_created_date
+  field_iptc_credit: field_iptc_credit
+  field_iptc_description: field_iptc_description
+  field_iptc_description_writer: field_iptc_description_writer
+  field_iptc_headline: field_iptc_headline
+  field_iptc_keywords: field_iptc_keywords
+  field_iptc_original_reference: field_iptc_original_reference
+  field_iptc_source: field_iptc_source
+  field_iptc_special_instructions: field_iptc_special_instructions
+  field_iptc_state_province: field_iptc_state_province
+  field_iptc_status: field_iptc_status
+  field_iptc_supplemental_categori: field_iptc_supplemental_categori
+  field_iptc_title: field_iptc_title
+
+destination:
+  plugin: entity:node
+
+migration_dependencies:
+  required:
+    - ncs_taxonomy
+    - ncs_file
+    - ncs_geolocation
+
+dependencies:
+  enforced:
+    module:
+      - ncs_migrate
