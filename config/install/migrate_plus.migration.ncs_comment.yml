@@ -1,0 +1,39 @@
+id: ncs_comment
+label: Comment
+migration_group: ncs
+
+source:
+  plugin: d8_entity
+  entity_type: comment
+
+process:
+  cid: fid
+  comment_type: comment_type
+  langcode: langcode
+  pid: pid
+  entity_id: entity_id
+  revision_id: revision_id
+  subject: subject
+  uid: uid
+  name: name
+  mail: mail
+  homepage: homepage
+  hostname: hostname
+  created: created
+  changed: changed
+  status: status
+  thread: thread
+  entity_type: entity_type
+  field_name: field_name
+  comment_body: comment_body
+  field_comments: field_comments
+
+destination:
+  plugin: entity:comment
+
+migration_dependencies: {}
+
+dependencies:
+  enforced:
+    module:
+      - ncs_migrate
