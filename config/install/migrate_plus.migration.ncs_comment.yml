@@ -7,7 +7,7 @@ source:
   entity_type: comment
 
 process:
-  cid: fid
+  cid: cid
   comment_type: comment_type
   langcode: langcode
   pid: pid
